@@ -1,6 +1,6 @@
-import Fastify from 'fastify'
-import fetch from 'node-fetch'
-import dotenv from 'dotenv'
+const Fastify = require('fastify')
+const fetch = require('node-fetch')
+const dotenv = require('dotenv')
 
 dotenv.config()
 
