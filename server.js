@@ -9,16 +9,13 @@ app.use(express.json())
 
 // API key middleware
 const validateApiKey = (req, res, next) => {
-    const apiKey = req.query.apiKey;
-    
-    if (!apiKey || apiKey !== process.env.API_KEY) {
-        return res.status(401).json({
-            error: 'Unauthorized - Invalid API key'
-        });
-    }
-    
-    next();
+  const apiKey = req.header('x-api-key');
+  if (apiKey !== process.env.API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized - Invalid API key' });
+  }
+  next();
 };
+
 
 // Apply middleware to all routes
 app.use(validateApiKey);
