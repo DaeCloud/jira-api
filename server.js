@@ -70,7 +70,7 @@ app.post('/ticket', async (req, res) => {
                     description,
                     "customfield_10223": email,
                     "customfield_10224": phone,
-                    "organizations": organization
+                    "labels": organization
                 },
                 "raiseOnBehalfOf": email
             })
