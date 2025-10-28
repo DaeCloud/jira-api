@@ -4,6 +4,11 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const app = express()
+app.use(cors({
+  origin: process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',') : [],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(express.json())
 
 // API key middleware
@@ -14,7 +19,6 @@ const validateApiKey = (req, res, next) => {
   }
   next();
 };
-
 
 // Apply middleware to all routes
 app.use(validateApiKey);
