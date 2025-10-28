@@ -54,7 +54,7 @@ function sendSMS(phone, message) {
 }
 
 app.post('/ticket', async (req, res) => {
-    const { summary, description, email, phone, organization } = req.body
+    const { summary, description, email, phone, department } = req.body
     try {
         const response = await fetch(`${process.env.BASE_URL}/rest/servicedeskapi/request`, {
             method: 'POST',
@@ -70,7 +70,7 @@ app.post('/ticket', async (req, res) => {
                     description,
                     "customfield_10223": email,
                     "customfield_10224": phone,
-                    "labels": organization
+                    "customfield_10289": department
                 },
                 "raiseOnBehalfOf": email
             })
